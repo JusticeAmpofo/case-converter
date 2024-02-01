@@ -57,9 +57,11 @@ function onTextSubmit(e) {
 	if (targetClassName.includes('sentence')) {
 		formTextArea.value = toSentence(formTextArea.value);
 	} else if (targetClassName.includes('lower')) {
-		formTextArea.value = formTextArea.value.toLowerCase();
+		formTextArea.value = toLower(formTextArea.value);
 	} else if (targetClassName.includes('upper')) {
-		formTextArea.value = formTextArea.value.toUpperCase();
+		formTextArea.value = toUpper(formTextArea.value);
+	} else if (targetClassName.includes('capitalized')) {
+		formTextArea.value = toCapitalized(formTextArea.value);
 	}
 }
 
@@ -68,6 +70,35 @@ function toSentence(value) {
 		.toLowerCase()
 		.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, (c) => c.toUpperCase())
 		.replace(/(\bi\b)/g, 'I');
+}
+
+function toLower(value) {
+	return value.toLowerCase();
+}
+
+function toUpper(value) {
+	return value.toUpperCase();
+}
+
+function toCapitalized(value) {
+	// Split the text into sentences based on '.', '!', or '?' followed by a space or end of string.
+	const sentenceEndings = /([.!?]\s|\s$)/;
+	const sentences = value.split(sentenceEndings);
+
+	// Process each sentence to capitalize the first letter of each word.
+	const capitalizedSentences = sentences.map((part) => {
+		// Check if the part is a sentence ending or whitespace, return as is if true.
+		if (sentenceEndings.test(part)) return part;
+
+		// Split the sentence into words, capitalize the first letter of each word, then join back.
+		return part
+			.split(' ')
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(' ');
+	});
+
+	// Join the parts back together into the final string.
+	return capitalizedSentences.join('');
 }
 
 function init() {

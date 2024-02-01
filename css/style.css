@@ -76,6 +76,10 @@ body {
 	background-color: #111;
 }
 
+.btn:active {
+	scale: 0.95;
+}
+
 .footer {
 	margin-top: 20px;
 }
