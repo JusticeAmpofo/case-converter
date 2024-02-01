@@ -1,5 +1,4 @@
 const buttonsContainer = document.querySelector('.buttons-container');
-const formTextArea = document.querySelector('.form__textarea');
 
 function displayElements() {
 	displayButtons();
@@ -46,12 +45,29 @@ function displayButtons() {
 }
 
 function displayYear() {
-	const yearText = document.createTextNode(new Date().getFullYear());
-	document.querySelector('.footer__year').appendChild(yearText);
+	document
+		.querySelector('.footer__year')
+		.appendChild(document.createTextNode(new Date().getFullYear()));
 }
 
 function onTextSubmit(e) {
-	console.log('submit', e.target);
+	const formTextArea = document.querySelector('.form__textarea');
+	const targetClassName = e.target.className;
+
+	if (targetClassName.includes('sentence')) {
+		formTextArea.value = toSentence(formTextArea.value);
+	} else if (targetClassName.includes('lower')) {
+		formTextArea.value = formTextArea.value.toLowerCase();
+	} else if (targetClassName.includes('upper')) {
+		formTextArea.value = formTextArea.value.toUpperCase();
+	}
+}
+
+function toSentence(value) {
+	return value
+		.toLowerCase()
+		.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, (c) => c.toUpperCase())
+		.replace(/(\bi\b)/g, 'I');
 }
 
 function init() {
