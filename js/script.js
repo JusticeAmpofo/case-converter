@@ -68,6 +68,8 @@ function onTextSubmit(e) {
 		formTextArea.value = toCapitalized(formTextArea.value);
 	} else if (targetClassName.includes('title')) {
 		formTextArea.value = toTitle(formTextArea.value);
+	} else if (targetClassName.includes('download')) {
+		downloadTextFile(formTextArea.value);
 	}
 }
 
@@ -132,6 +134,26 @@ function toTitle(value) {
 			return match; // Return exceptions in lowercase.
 		}
 	});
+}
+
+function downloadTextFile(value) {
+	// Create a Blob containing the text content
+	const blob = new Blob([value], { type: 'text/plain' });
+
+	// Create a URL for the Blob
+	const url = URL.createObjectURL(blob);
+
+	// Create a download link and trigger a click event
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = 'textfile.txt'; // Set the desired file name
+	a.style.display = 'none';
+	document.body.appendChild(a);
+	a.click();
+
+	// Clean up by revoking the Blob URL
+	URL.revokeObjectURL(url);
+	a.remove();
 }
 
 function init() {
