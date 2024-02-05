@@ -35,6 +35,10 @@ function displayButtons() {
 			className: 'copy',
 			name: 'Copy to Clipboard',
 		},
+		{
+			className: 'clear',
+			name: 'Clear',
+		},
 	];
 
 	buttons.forEach((btn) => {
