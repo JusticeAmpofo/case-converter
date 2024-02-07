@@ -9,34 +9,42 @@ function displayButtons() {
 	const buttons = [
 		{
 			className: 'sentence',
+			id: 'sentence',
 			name: 'Sentence case',
 		},
 		{
 			className: 'lower',
+			id: 'lower',
 			name: 'lower case',
 		},
 		{
 			className: 'upper',
+			id: 'upper',
 			name: 'UPPER CASE',
 		},
 		{
 			className: 'capitalized',
+			id: 'capitalized',
 			name: 'Capitalized Case',
 		},
 		{
 			className: 'title',
+			id: 'title',
 			name: 'Title Case',
 		},
 		{
 			className: 'download',
+			id: 'download',
 			name: 'Download Text',
 		},
 		{
 			className: 'copy',
+			id: 'copy',
 			name: 'Copy to Clipboard',
 		},
 		{
 			className: 'clear',
+			id: 'clear',
 			name: 'Clear',
 		},
 	];
@@ -44,6 +52,7 @@ function displayButtons() {
 	buttons.forEach((btn) => {
 		const buttonEl = document.createElement('button');
 		buttonEl.className = `btn ${btn.className}`;
+		buttonEl.id = btn.id;
 
 		const name = document.createTextNode(btn.name);
 
@@ -60,20 +69,29 @@ function displayYear() {
 
 function onTextSubmit(e) {
 	const formTextArea = document.querySelector('.form__textarea');
-	const targetClassName = e.target.className;
+	const targetID = e.target.id;
 
-	if (targetClassName.includes('sentence')) {
-		formTextArea.value = toSentence(formTextArea.value);
-	} else if (targetClassName.includes('lower')) {
-		formTextArea.value = toLower(formTextArea.value);
-	} else if (targetClassName.includes('upper')) {
-		formTextArea.value = toUpper(formTextArea.value);
-	} else if (targetClassName.includes('capitalized')) {
-		formTextArea.value = toCapitalized(formTextArea.value);
-	} else if (targetClassName.includes('title')) {
-		formTextArea.value = toTitle(formTextArea.value);
-	} else if (targetClassName.includes('download')) {
-		downloadTextFile(formTextArea.value);
+	switch (targetID) {
+		case 'sentence':
+			formTextArea.value = toSentence(formTextArea.value);
+			break;
+		case 'lower':
+			formTextArea.value = toLower(formTextArea.value);
+			break;
+		case 'upper':
+			formTextArea.value = toUpper(formTextArea.value);
+			break;
+		case 'capitalized':
+			formTextArea.value = toCapitalized(formTextArea.value);
+			break;
+		case 'title':
+			formTextArea.value = toTitle(formTextArea.value);
+			break;
+		case 'download':
+			downloadTextFile(formTextArea.value);
+			break;
+		default:
+			break;
 	}
 }
 
