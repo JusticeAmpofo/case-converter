@@ -90,6 +90,8 @@ function onTextSubmit(e) {
 		case 'download':
 			downloadTextFile(formTextArea.value);
 			break;
+		case 'copy':
+			copyToClipboard(formTextArea.value);
 		default:
 			break;
 	}
@@ -179,6 +181,26 @@ function downloadTextFile(value) {
 
 	// Clean up by revoking the Blob URL
 	URL.revokeObjectURL(url);
+}
+
+function copyToClipboard(value) {
+	if (value.trim() === '') {
+		setAlert('Please enter some text!', 'message-container__danger');
+		return;
+	}
+
+	navigator.clipboard.writeText(value).then(
+		() => {
+			setAlert(
+				'Copying to clipboard was successful!',
+				'message-container__success'
+			);
+		},
+		(err) => {
+			console.error('Could not copy text: ', err);
+			setAlert('Sorry! Something went wrong...', 'message-container__danger');
+		}
+	);
 }
 
 function setAlert(message, className) {
