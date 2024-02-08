@@ -22,6 +22,7 @@ body {
 
 .header {
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .header__text {
@@ -36,8 +37,18 @@ body {
 	padding: 0 20px;
 }
 
-.form {
-	margin-top: 20px;
+.message-container__message {
+	background-color: #767676;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}
+
+.message-container__success {
+	border-top: 3px solid #208000;
+}
+
+.message-container__danger {
+	border-top: 3px solid #cb0033;
 }
 
 .form__textarea {

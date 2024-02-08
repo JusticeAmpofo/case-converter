@@ -159,6 +159,11 @@ function toTitle(value) {
 }
 
 function downloadTextFile(value) {
+	if (value.trim() === '') {
+		setAlert('Please enter some text!', 'message-container__danger');
+		return;
+	}
+
 	// Create a Blob containing the text content
 	const blob = new Blob([value], { type: 'text/plain' });
 
@@ -170,12 +175,21 @@ function downloadTextFile(value) {
 	a.href = url;
 	a.download = 'textfile.txt'; // Set the desired file name
 	a.style.display = 'none';
-	document.body.appendChild(a);
 	a.click();
 
 	// Clean up by revoking the Blob URL
 	URL.revokeObjectURL(url);
-	a.remove();
+}
+
+function setAlert(message, className) {
+	const messageContainer = document.querySelector('.message-container');
+	messageContainer.classList.add('message-container__message', className);
+	messageContainer.innerHTML = `<p>${message}</p>`;
+
+	setTimeout(() => {
+		messageContainer.classList.remove('message-container__message', className);
+		messageContainer.innerHTML = '';
+	}, 3000);
 }
 
 function init() {
