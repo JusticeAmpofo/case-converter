@@ -1,3 +1,4 @@
+const formTextArea = document.querySelector('.form__textarea');
 const buttonsContainer = document.querySelector('.buttons-container');
 
 function displayElements() {
@@ -68,7 +69,6 @@ function displayYear() {
 }
 
 function onTextSubmit(e) {
-	const formTextArea = document.querySelector('.form__textarea');
 	const targetID = e.target.id;
 
 	switch (targetID) {
@@ -207,6 +207,38 @@ function copyToClipboard(value) {
 	);
 }
 
+function onTextInput() {
+	const characterCounterEl = document.querySelector('.character-counter');
+	const wordCounterEl = document.querySelector('.word-counter');
+	const sentenceCounterEl = document.querySelector('.sentence-counter');
+	const textValue = formTextArea.value;
+
+	characterCounterEl.innerHTML = characterCount(textValue);
+	wordCounterEl.innerHTML = wordCount(textValue);
+	sentenceCounterEl.innerHTML = sentenceCount(textValue);
+}
+
+function characterCount(value) {
+	return value.length;
+}
+
+function wordCount(value) {
+	// Trim the text to remove leading and trailing spaces and then split the text by spaces and other whitespace characters
+	const words = value.trim().split(/\s+/);
+
+	return words.length;
+}
+
+function sentenceCount(value) {
+	// Regular expression to match sentence endings (. ! ?)
+	const sentenceEndings = /[.!?]/g;
+
+	// Split the text by sentence endings and filter out any empty strings
+	const sentences = value.trim().split(sentenceEndings).filter(Boolean);
+
+	return sentences.length;
+}
+
 function setAlert(message, className) {
 	const messageContainer = document.querySelector('.message-container');
 	messageContainer.classList.add('message-container__message', className);
@@ -220,6 +252,7 @@ function setAlert(message, className) {
 
 function init() {
 	document.addEventListener('DOMContentLoaded', displayElements);
+	formTextArea.addEventListener('input', onTextInput);
 	buttonsContainer.addEventListener('click', onTextSubmit);
 }
 
