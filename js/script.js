@@ -1,5 +1,8 @@
 const formTextArea = document.querySelector('.form__textarea');
 const buttonsContainer = document.querySelector('.buttons-container');
+const characterCounterEl = document.querySelector('.character-counter');
+const wordCounterEl = document.querySelector('.word-counter');
+const sentenceCounterEl = document.querySelector('.sentence-counter');
 
 function displayElements() {
 	displayButtons();
@@ -94,7 +97,7 @@ function onTextSubmit(e) {
 			copyToClipboard(formTextArea.value);
 			break;
 		case 'clear':
-			formTextArea.value = '';
+			clearText();
 			break;
 		default:
 			break;
@@ -207,10 +210,14 @@ function copyToClipboard(value) {
 	);
 }
 
+function clearText() {
+	formTextArea.value = '';
+	characterCounterEl.innerHTML = '0';
+	wordCounterEl.innerHTML = '0';
+	sentenceCounterEl.innerHTML = '0';
+}
+
 function onTextInput() {
-	const characterCounterEl = document.querySelector('.character-counter');
-	const wordCounterEl = document.querySelector('.word-counter');
-	const sentenceCounterEl = document.querySelector('.sentence-counter');
 	const textValue = formTextArea.value;
 
 	characterCounterEl.innerHTML = characterCount(textValue);
