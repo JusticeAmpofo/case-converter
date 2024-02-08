@@ -70,7 +70,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .btn {
@@ -97,6 +97,10 @@ body {
 
 .footer__text {
 	text-align: center;
+}
+
+.footer__text--first {
+	margin-bottom: 5px;
 }
 
 .footer__link {

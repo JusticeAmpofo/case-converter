@@ -92,6 +92,8 @@ function onTextSubmit(e) {
 			break;
 		case 'copy':
 			copyToClipboard(formTextArea.value);
+		case 'clear':
+			formTextArea.value = '';
 		default:
 			break;
 	}
