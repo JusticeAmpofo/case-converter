@@ -1,3 +1,5 @@
+import './css/style.css';
+
 const formTextArea = document.querySelector('.form__textarea');
 const buttonsContainer = document.querySelector('.buttons-container');
 const characterCounterEl = document.querySelector('.character-counter');
