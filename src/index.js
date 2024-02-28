@@ -1,3 +1,5 @@
+import toSentence from './functions/toSentence/toSentence';
+
 import './css/style.css';
 
 const formTextArea = document.querySelector('.form__textarea');
@@ -104,13 +106,6 @@ function onTextSubmit(e) {
 		default:
 			break;
 	}
-}
-
-function toSentence(value) {
-	return value
-		.toLowerCase()
-		.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, (c) => c.toUpperCase())
-		.replace(/(\bi\b)/g, 'I');
 }
 
 function toLower(value) {
