@@ -1,4 +1,5 @@
 import toSentence from './functions/toSentence/toSentence';
+import toLower from './functions/toLower/toLower';
 
 import './css/style.css';
 
@@ -106,10 +107,6 @@ function onTextSubmit(e) {
 		default:
 			break;
 	}
-}
-
-function toLower(value) {
-	return value.toLowerCase();
 }
 
 function toUpper(value) {
