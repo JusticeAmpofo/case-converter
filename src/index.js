@@ -1,5 +1,6 @@
 import toSentence from './functions/toSentence/toSentence';
 import toLower from './functions/toLower/toLower';
+import toUpper from './functions/toUpper/toUpper';
 
 import './css/style.css';
 
@@ -107,10 +108,6 @@ function onTextSubmit(e) {
 		default:
 			break;
 	}
-}
-
-function toUpper(value) {
-	return value.toUpperCase();
 }
 
 function toCapitalized(value) {
