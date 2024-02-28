@@ -1,3 +1,9 @@
+import toSentence from './functions/toSentence/toSentence';
+import toLower from './functions/toLower/toLower';
+import toUpper from './functions/toUpper/toUpper';
+import toCapitalized from './functions/toCapitalized/toCapitalized';
+import toTitle from './functions/toTitle/toTitle';
+
 import './css/style.css';
 
 const formTextArea = document.querySelector('.form__textarea');
@@ -104,69 +110,6 @@ function onTextSubmit(e) {
 		default:
 			break;
 	}
-}
-
-function toSentence(value) {
-	return value
-		.toLowerCase()
-		.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, (c) => c.toUpperCase())
-		.replace(/(\bi\b)/g, 'I');
-}
-
-function toLower(value) {
-	return value.toLowerCase();
-}
-
-function toUpper(value) {
-	return value.toUpperCase();
-}
-
-function toCapitalized(value) {
-	// Split the text into sentences based on '.', '!', or '?' followed by a space or end of string.
-	const sentenceEndings = /([.!?]\s|\s$)/;
-	const sentences = value.toLowerCase().split(sentenceEndings);
-
-	// Process each sentence to capitalize the first letter of each word.
-	const capitalizedSentences = sentences.map((part) => {
-		// Check if the part is a sentence ending or whitespace, return as is if true.
-		if (sentenceEndings.test(part)) return part;
-
-		// Split the sentence into words, capitalize the first letter of each word, then join back.
-		return part
-			.split(' ')
-			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-			.join(' ');
-	});
-
-	// Join the parts back together into the final string.
-	return capitalizedSentences.join('');
-}
-
-function toTitle(value) {
-	const exceptions = ['of', 'an', 'and', 'the', 'or'];
-	// This regex will match either sentence endings followed by space (or end of string) or words directly.
-	const sentenceEndingsOrWords = /([.!?]\s|\s$)|\w+('\w+)?/g;
-
-	// Process the text, identifying sentence parts and words.
-	let isStartOfSentence = true; // Flag to indicate the start of a new sentence or the whole text.
-
-	return value.toLowerCase().replace(sentenceEndingsOrWords, (match) => {
-		// If the match is a sentence ending, keep it as is and mark the start of a new sentence.
-		if (/[.!?]\s|\s$/.test(match)) {
-			isStartOfSentence = true;
-			return match;
-		}
-
-		// For words, capitalize if it's the start of a sentence or not an exception.
-		// Lowercase exceptions unless it's the start of a sentence.
-		if (isStartOfSentence || !exceptions.includes(match)) {
-			isStartOfSentence = false; // Any word encountered marks the end of a start of a sentence.
-			return match.charAt(0).toUpperCase() + match.slice(1);
-		} else {
-			isStartOfSentence = false; // Ensure to reset for words that are exceptions but not at the start.
-			return match; // Return exceptions in lowercase.
-		}
-	});
 }
 
 function downloadTextFile(value) {
