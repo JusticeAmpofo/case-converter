@@ -5,6 +5,7 @@ import toCapitalized from './functions/toCapitalized/toCapitalized';
 import toTitle from './functions/toTitle/toTitle';
 import characterCount from './functions/characterCount/characterCount';
 import wordCount from './functions/wordCount/wordCount';
+import sentenceCount from './functions/sentenceCount/sentenceCount';
 
 import './css/style.css';
 
@@ -170,16 +171,6 @@ function onTextInput() {
 	characterCounterEl.innerHTML = characterCount(textValue);
 	wordCounterEl.innerHTML = wordCount(textValue);
 	sentenceCounterEl.innerHTML = sentenceCount(textValue);
-}
-
-function sentenceCount(value) {
-	// Regular expression to match sentence endings (. ! ?)
-	const sentenceEndings = /[.!?]/g;
-
-	// Split the text by sentence endings and filter out any empty strings
-	const sentences = value.trim().split(sentenceEndings).filter(Boolean);
-
-	return sentences.length;
 }
 
 function setAlert(message, className) {
