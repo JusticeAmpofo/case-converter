@@ -4,6 +4,7 @@ import toUpper from './functions/toUpper/toUpper';
 import toCapitalized from './functions/toCapitalized/toCapitalized';
 import toTitle from './functions/toTitle/toTitle';
 import characterCount from './functions/characterCount/characterCount';
+import wordCount from './functions/wordCount/wordCount';
 
 import './css/style.css';
 
@@ -169,13 +170,6 @@ function onTextInput() {
 	characterCounterEl.innerHTML = characterCount(textValue);
 	wordCounterEl.innerHTML = wordCount(textValue);
 	sentenceCounterEl.innerHTML = sentenceCount(textValue);
-}
-
-function wordCount(value) {
-	// Trim the text to remove leading and trailing spaces and then split the text by spaces and other whitespace characters
-	const words = value.trim().split(/\s+/);
-
-	return words.length;
 }
 
 function sentenceCount(value) {
