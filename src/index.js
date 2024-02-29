@@ -3,6 +3,7 @@ import toLower from './functions/toLower/toLower';
 import toUpper from './functions/toUpper/toUpper';
 import toCapitalized from './functions/toCapitalized/toCapitalized';
 import toTitle from './functions/toTitle/toTitle';
+import characterCount from './functions/characterCount/characterCount';
 
 import './css/style.css';
 
@@ -168,10 +169,6 @@ function onTextInput() {
 	characterCounterEl.innerHTML = characterCount(textValue);
 	wordCounterEl.innerHTML = wordCount(textValue);
 	sentenceCounterEl.innerHTML = sentenceCount(textValue);
-}
-
-function characterCount(value) {
-	return value.length;
 }
 
 function wordCount(value) {
